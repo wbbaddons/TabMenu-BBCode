@@ -29,7 +29,7 @@
 		</div>
 	{/foreach}
 </div>
-<script>
+<script data-relocate="true">
 	//<![CDATA[
 		WCF.TabMenu.init();
 	//]]>
