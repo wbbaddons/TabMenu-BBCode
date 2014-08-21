@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="be.bastelstu.wcf.tabMenuBBCode" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/package.xsd">
+	<packageinformation>
+		<packagename language="de"><![CDATA[Tab-Menü-BBCode]]></packagename>
+		<packagename language="en"><![CDATA[Tab menu BBCode]]></packagename>
+		<packagedescription language="de"><![CDATA[Fügt einen BBCode hinzu, der das Einbinden von Tab-Menüs ermöglicht.]]></packagedescription>
+		<packagedescription language="en"><![CDATA[Adds a BBCode to include tabbed menus.]]></packagedescription>
+		<version>1.0.0</version>
+		<date>2014-08-21</date>
+		<license><![CDATA[MIT License <https://license.bastelstu.be/be.bastelstu.wcf.tabMenuBBCode/>]]></license>
+	</packageinformation>
+
+	<authorinformation>
+		<author><![CDATA[Tim Düsterhus]]></author>
+		<authorurl><![CDATA[http://tims.bastelstu.be]]></authorurl>
+	</authorinformation>
+
+	<requiredpackages>
+		<requiredpackage minversion="2.0.7">com.woltlab.wcf</requiredpackage>
+	</requiredpackages>
+	
+	<excludedpackages>
+		<excludedpackage version="*">com.geramy.wcf.tabmenu.bbcode</excludedpackage>
+	</excludedpackages>
+	
+	<instructions type="install">
+		<instruction type="language">language/*.xml</instruction>
+		<instruction type="file">file.tar</instruction>
+		<instruction type="template">template.tar</instruction>
+		<instruction type="bbcode">bbcode.xml</instruction>
+	</instructions>
+	
+	<instructions type="update" fromversion="*">
+		<instruction type="language">language/*.xml</instruction>
+		<instruction type="file">file.tar</instruction>
+		<instruction type="template">template.tar</instruction>
+		<instruction type="bbcode">bbcode.xml</instruction>
+	</instructions>
+</package>
