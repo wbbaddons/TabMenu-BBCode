@@ -50,6 +50,14 @@ class TabmenuBBCode extends AbstractBBCode {
 		
 		$tabs = array_reduce(array_map(
 			function($v) use (&$tab) {
+				// remove quotes
+				// see \wcf\system\bbcode\BBCodeParser::buildTagAttributes()
+				if (mb_substr($v[0], 0, 1) == "'" && mb_substr($v[0], -1) == "'") {
+					$v[0] = str_replace("\'", "'", $v[0]);
+					$v[0] = str_replace("\\\\", "\\", $v[0]);
+					$v[0] = mb_substr($v[0], 1, -1);
+				}
+				
 				return array(
 					array(
 						'title' => $v[0],
@@ -98,11 +106,24 @@ class TabmenuBBCode extends AbstractBBCode {
 		}
 		
 		foreach ($tabs as $tab) {
+			// Disallow empty tab titles
+			if (empty($tab['title'])) {
+				return $openingTag['source'].$content.$closingTag['source'];
+			}
+			
 			// no subtabs are fine
 			if (count($tab['content']) <= 1) continue; // return $tab;
 			// ... but content before the first sub tab is not
 			if ($tab['content'][0]['title'] === null) {
 				return $openingTag['source'].$content.$closingTag['source'];
+			}
+			
+			// Check the subtabs for empty titles
+			foreach ($tab['content'] as $subtab) {
+				// Disallow empty subtab titles
+				if (empty($subtab['title'])) {
+					return $openingTag['source'].$content.$closingTag['source'];
+				}
 			}
 		}
 		
